@@ -10,13 +10,13 @@ public class NSlookup {
 
 	public static void main(String[] args) {
 		
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(isr);
+		String hostname = "";
+
 		while(true) {
 			try {
-				String hostname = "";
-				System.out.print("> ");
-				InputStreamReader isr = new InputStreamReader(System.in);
-				BufferedReader br = new BufferedReader(isr);
-				
+				System.out.print("> ");				
 				try {
 					hostname = br.readLine();
 					if(hostname.equals("exit")) {
