@@ -32,11 +32,11 @@ public class NSlookup {
 				}
 				
 			} catch (UnknownHostException e) {
-				e.printStackTrace();
+//				e.printStackTrace();
+				System.out.println("해당하는 IP Adrress가 없습니다.");
 			}
 
 		}
-
 	}
 
 }
