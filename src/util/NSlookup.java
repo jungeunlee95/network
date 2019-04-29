@@ -19,9 +19,14 @@ public class NSlookup {
 				System.out.print("> ");				
 				try {
 					hostname = br.readLine();
-					if(hostname.equals("exit")) {
+					
+//					String s = new String("exit"); // 객체가 몇개 생길까?
+					
+//					if(hostname.equals("exit")) { // NullPointException날수있음
+					if("exit".equals(hostname)) { // 이게 더 안전함 
 						break;
 					}
+					
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

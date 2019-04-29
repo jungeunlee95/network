@@ -7,6 +7,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class TCPServer {
 
@@ -22,15 +23,18 @@ public class TCPServer {
 //			String localhost = inetAddress.getHostAddress();
 //			serverSocket.bind(new InetSocketAddress(localhost, 5000));
 //			serverSocket.bind(new InetSocketAddress(inetAddress, 5000));
-			serverSocket.bind(new InetSocketAddress("0.0.0.0", 5000));
+			serverSocket.bind(new InetSocketAddress("0.0.0.0", 5000)); 
+					//모든 ip허용- 클라이언트가 찌를 때 하나 선택해서 찌름, 연결되면 실제 ip로 변경
 			
 			// 3. accept : client의 연결요청을 기다린다.
 			Socket socket = serverSocket.accept();  // blocking : 안되면 밑에 실행 X
 			
-			// 3-2 host ipㅡport 가져오기
-																		// down casting
+			// 3-2 host ipㅡport 가져오기										// down casting
 			InetSocketAddress inetRemoteSocketAddress = (InetSocketAddress)socket.getRemoteSocketAddress();
+			// inetRemoteSocketAddress.getAddress() 				  : /ip
+			// inetRemoteSocketAddress.getAddress().getHostAddress()  : ip
 			String remoteHostAddress = inetRemoteSocketAddress.getAddress().getHostAddress();
+			
 			int remotePort = inetRemoteSocketAddress.getPort();
 			System.out.println("[server] conneted by client [" + remoteHostAddress + ": " + remotePort+"]");
 //			System.out.println("connected by client");
@@ -56,7 +60,10 @@ public class TCPServer {
 					
 					// 6. 데이터 쓰기 
 					os.write(data.getBytes("utf-8"));
+					
 				}
+			}catch(SocketException e) { 
+				System.out.println("[server] sudden closed by client");
 			}catch(IOException e) { // 정상종료 안하고 확 꺼버린 ..!
 				e.printStackTrace();
 			}finally {
