@@ -110,7 +110,7 @@ public class RequestHandler extends Thread {
 		//응답
 		os.write( (protocol + "HTTP/1.1 200 OK\r\n").getBytes( "UTF-8" ) );
 		os.write( "Content-Type:text/html; charset=utf-8\r\n".getBytes( "UTF-8" ) );
-		os.write( "\r\n".getBytes() ); // 브라우저는 /r(빈 개행)이 나온순간 이 다음은 Body구나! 하고 암
+		os.write( "\r\n".getBytes() ); 
 		os.write( body );
 
 		return;
@@ -131,7 +131,7 @@ public class RequestHandler extends Thread {
 		//응답
 		os.write( (protocol + "HTTP/1.1 200 OK\r\n").getBytes( "UTF-8" ) );
 		os.write( "Content-Type:text/html; charset=utf-8\r\n".getBytes( "UTF-8" ) );
-		os.write( "\r\n".getBytes() ); // 브라우저는 /r(빈 개행)이 나온순간 이 다음은 Body구나! 하고 암
+		os.write( "\r\n".getBytes() ); 
 		os.write( body );
 
 		return;
