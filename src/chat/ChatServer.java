@@ -5,7 +5,7 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class EchoServer {
+public class ChatServer {
 	
 	private static final int PORT = 7000;
 	
@@ -23,7 +23,8 @@ public class EchoServer {
 				// 3. accept 
 				Socket socket = serverSocket.accept();  
 				
-				Thread thread = new EchoServerReceiveThread(socket);
+				Thread thread = new ChatServerReceiveThread(socket);
+				System.out.println("@@@@"+socket);
 				thread.start();
 			}
 				

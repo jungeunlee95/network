@@ -9,7 +9,7 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class EchoClient {
+public class ChatClient {
 	
 	private static final String SERVER_IP = "192.168.1.12";
 	private static final int SERVER_PORT = 7000;

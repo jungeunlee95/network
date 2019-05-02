@@ -9,19 +9,21 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketException;
 
-public class EchoServerReceiveThread extends Thread {
+public class ChatServerReceiveThread extends Thread {
 	private Socket socket;
 	private String nickname;
 
-	public EchoServerReceiveThread(Socket socket) {
+	public ChatServerReceiveThread(Socket socket) {
 		this.socket = socket;
 	}
 
 	@Override
 	public void run() {
 		// 3-2 host ipㅡport 가져오기
-		InetSocketAddress inetRemoteSocketAddress = (InetSocketAddress) socket.getRemoteSocketAddress();
-		String remoteHostAddress = inetRemoteSocketAddress.getAddress().getHostAddress();
+		InetSocketAddress inetRemoteSocketAddress = 
+				(InetSocketAddress) socket.getRemoteSocketAddress();
+		String remoteHostAddress = 
+				inetRemoteSocketAddress.getAddress().getHostAddress();
 		int remotePort = inetRemoteSocketAddress.getPort();
 		System.out.println(remoteHostAddress + " : " + remotePort);
 
@@ -36,15 +38,15 @@ public class EchoServerReceiveThread extends Thread {
 				// 5. 데이터 읽기
 				String data = br.readLine();
 				if (data == null) {
-					EchoServer.log("[  " + this.nickname + "님이 나가셨습니다.  ]");
+					ChatServer.log("[  " + this.nickname + "님이 나가셨습니다.  ]");
 					break;
 				}
 				if(cnt==0) {
 					this.nickname = data;
 					cnt++;
-					EchoServer.log("[  " + this.nickname + "님이 입장하셨습니다.  ]");
+					ChatServer.log("[  " + this.nickname + "님이 입장하셨습니다.  ]");
 				}else {
-					EchoServer.log(data);
+					ChatServer.log(data);
 					pr.println(data);
 				}
 
